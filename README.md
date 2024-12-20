@@ -1,3 +1,142 @@
+# Log Analysis Toolkit
+
+## Overview
+
+The **Log Analysis Toolkit** is a set of Python tools designed for parsing, analyzing, and visualizing Linux system log files. This toolkit aims to help users monitor system activities, identify potential security threats, and gain deeper insights into system performance.
+
+The toolkit is implemented in the form of Jupyter Notebooks (`.ipynb`), with different functionalities distributed across separate cells, allowing users to execute and analyze step-by-step easily.
+
+## Features
+
+1. **Log Parsing**:
+   - Parses general system logs, extracting date and time, hostname, program name, and message content.
+   - Parses SSH login failure logs, extracting source IP, username, and geographic location information.
+
+2. **Log Filtering**:
+   - Filters logs based on user-specified date ranges.
+   - Aggregates and displays the number of log entries for each program.
+
+3. **Detailed Viewing**:
+   - Allows users to select specific programs to view all log entries for that program within a specified time range.
+
+4. **Visual Analysis**:
+   - Generates various statistical charts, such as bar charts and line graphs, to display program activities, source IPs, usernames, and geographic distribution.
+
+5. **Result Saving**:
+   - Saves analysis results as CSV files for future reference or report creation.
+   - Saves generated charts as PNG image files.
+
+## Prerequisites
+
+Ensure that your system has the following software and Python packages installed:
+
+- **Python 3.6 or higher**
+- **Jupyter Notebook**
+- **Required Python Packages**:
+  - `pandas`
+  - `matplotlib`
+  - `seaborn`
+  - `ipinfo`
+
+You can install the required packages using the following command:
+
+```bash
+pip install pandas matplotlib seaborn ipinfo
+```
+
+## Installation
+
+1. **Clone the Repository**
+
+   ```bash
+   git clone https://github.com/yourusername/log-analysis-toolkit.git
+   cd log-analysis-toolkit
+   ```
+
+## Usage
+
+### 1. Log Parsing
+
+In the first cell of the Notebook, execute the code to parse the log files. This section is responsible for reading the log files and converting them into a structured DataFrame.
+
+### 2. General Log Analysis
+
+In the second cell, execute the code to perform general log analysis. This section includes:
+
+- Allowing the user to select the number of days to view (default is all logs).
+- Filtering logs based on the selected number of days.
+- Aggregating and displaying the number of log entries for each program.
+- Allowing the user to select specific programs to view detailed log entries.
+- Optional: Saving the selected program's logs as a CSV file.
+- Optional: Generating and saving a bar chart displaying the top 20 programs by log entry count.
+
+### 3. SSH Log Analysis
+
+In the third cell, execute the code to focus on the analysis of SSH login failure logs. This section includes:
+
+- Parsing SSH logs to extract source IPs, usernames, and geographic location information.
+- Setting up the IPInfo access token to obtain geographic locations.
+- Performing multidimensional statistical analysis, including daily login failure counts, source IP statistics, username statistics, time distribution analysis, and source country statistics.
+- Generating and saving relevant visual charts.
+- Saving analysis results as CSV files.
+
+## Configuration
+
+### IPInfo Access Token
+
+SSH log analysis requires the use of the IPInfo service to obtain geographic location information for IP addresses. Follow these steps to obtain and configure your access token:
+
+1. **Obtain Access Token**:
+   - Register and log in to [ipinfo.io](https://ipinfo.io/).
+   - Find your access token in the account dashboard.
+
+2. **Configure Access Token**:
+   - In the SSH Log Analysis cell of the Notebook, locate the following line:
+   
+     ```python
+     access_token = 'YOUR_IPINFO_ACCESS_TOKEN'  # Replace with your ipinfo access token
+     ```
+   
+   - Replace `'YOUR_IPINFO_ACCESS_TOKEN'` with your actual access token:
+   
+     ```python
+     access_token = 'your_actual_access_token_here'
+     ```
+
+## Outputs
+
+### General Log Analysis
+
+- **CSV Files**:
+  - `selected_program_logs.csv`: Contains detailed logs of the selected program.
+
+- **Visual Charts**:
+  - `program_summary_top20.png`: Bar chart showing the top 20 programs by log entry count.
+
+### SSH Log Analysis
+
+- **CSV Files**:
+  - `daily_login_failures.csv`: Daily SSH login failure counts.
+  - `ip_failures.csv`: Login failure counts by source IP address (top 10).
+  - `user_failures.csv`: Login failure counts by target username (top 10).
+  - `hourly_failures.csv`: Login failure counts distributed by hour.
+  - `country_failures.csv`: Login failure counts by source country (top 10).
+
+- **Visual Charts**:
+  - `daily_login_failures.png`: Line chart showing daily SSH login failure counts.
+  - `top10_ip_failures.png`: Bar chart showing login failure counts for the top 10 source IP addresses.
+  - `top10_user_failures.png`: Bar chart showing login failure counts for the top 10 target usernames.
+  - `hourly_login_failures.png`: Bar chart showing login failure counts distributed by hour.
+  - `top10_countries_failures.png`: Bar chart showing login failure counts for the top 10 source countries.
+
+## License
+
+This project is licensed under the [MIT License](LICENSE).
+
+---
+---
+
+
 # 日誌分析工具包
 
 ## 概述
